@@ -1,9 +1,10 @@
 import { useRef, useEffect, useState } from 'react';
 import useChatStore from '../../store/chatStore';
+import ChatHeader from '../ChatHeader/ChatHeader';
 import './Chat.css';
 
 const Chat = () => {
-    const { messages, theme, toggleTheme, sendMessage } = useChatStore();
+    const { messages, theme, sendMessage } = useChatStore();
     const [inputMessage, setInputMessage] = useState('');
     const chatContainerRef = useRef(null);
 
@@ -23,12 +24,7 @@ const Chat = () => {
 
     return (
         <div className={`chat-container ${theme}`}>
-            <div className="chat-header">
-                <h2>FinTalk ChatBot Challenge</h2>
-                <button onClick={toggleTheme} className="theme-toggle">
-                    {theme === 'light' ? '☀️' : '🌕'}
-                </button>
-            </div>
+            <ChatHeader />
             
             <div className="messages-container" ref={chatContainerRef}>
                 {messages.map((message, index) => (

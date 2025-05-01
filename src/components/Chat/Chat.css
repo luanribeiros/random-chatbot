@@ -189,3 +189,5 @@
 .dark .messages-container::-webkit-scrollbar-thumb {
     background: #666;
 }
+
+/* Remover os estilos do chat-header e theme-toggle que foram movidos para ChatHeader.css */
