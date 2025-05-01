@@ -1,14 +1,14 @@
 import "./ChatHeader.css";
-import useChatStore from "../../store/chatStore.ts";
+import useChatStore from "../../store/chatStore";
 
 const ChatHeader = () => {
-  const { theme, toggleTheme } = useChatStore();
+  const { theme, toggleTheme, settings } = useChatStore();
 
   return (
     <div className="chat-header">
-      <h2>FinTalk ChatBot Challenge</h2>
+      <h2>{settings.botName}</h2>
       <button onClick={toggleTheme} className="theme-toggle">
-        {theme === "light" ? "🌚" : "🌞"}
+        {theme === "light" ? "🌚" : "☀️"}
       </button>
     </div>
   );

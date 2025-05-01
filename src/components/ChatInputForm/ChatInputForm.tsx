@@ -1,5 +1,6 @@
 import { useState } from "react";
 import VoiceRecorder from "../VoiceRecorder/VoiceRecorder";
+import ChatSettings from "../ChatSettings/ChatSettings";
 import "./ChatInputForm.css";
 
 interface ChatInputFormProps {
@@ -36,7 +37,10 @@ const ChatInputForm = ({ onSendMessage }: ChatInputFormProps) => {
         />
         <button type="submit">⬆️</button>
       </form>
-      <VoiceRecorder onAudioRecorded={handleAudioRecorded} />
+      <div className="action-buttons">
+        <VoiceRecorder onAudioRecorded={handleAudioRecorded} />
+        <ChatSettings />
+      </div>
     </div>
   );
 };

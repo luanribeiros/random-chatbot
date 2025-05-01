@@ -35,20 +35,21 @@
 
 .message-form input:focus {
     outline: none;
-    border-color: #f1487e;
-    box-shadow: 0 0 0 2px rgba(241, 72, 126, 0.2);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.2);
 }
 
-.message-form button {
+.message-form button,
+.voice-recorder-button,
+.settings-toggle {
     width: 44px;
     height: 44px;
-    background-color: #f1487e;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,11 +57,21 @@
     font-size: 1.2rem;
 }
 
-.message-form button:hover {
-    background-color: #e13d71;
+.message-form button:hover,
+.voice-recorder-button:hover,
+.settings-toggle:hover {
+    background-color: var(--secondary-color);
     transform: translateY(-2px);
 }
 
-.message-form button:active {
+.message-form button:active,
+.voice-recorder-button:active,
+.settings-toggle:active {
     transform: translateY(0);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
 }

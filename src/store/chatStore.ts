@@ -1,7 +1,18 @@
 import { create } from "zustand";
-import { ChatStore, Message } from "../types";
+import { ChatStore, Message, ChatSettings } from "../types";
 import { botResponseSets } from "../data/botResponses";
 import { v4 as uuidv4 } from "uuid";
+
+const getInitialSettings = (): ChatSettings => {
+  const savedSettings = localStorage.getItem("chatSettings");
+  return savedSettings
+    ? JSON.parse(savedSettings)
+    : {
+        botName: "FinTalk Bot",
+        primaryColor: "#f1487e",
+        secondaryColor: "#e13d71",
+      };
+};
 
 const getUserId = (): string => {
   let userId = localStorage.getItem("userId");
@@ -21,11 +32,22 @@ const getUserType = (userId: string): "default" | "premium" | "vip" => {
   return userTypes[hash % 3] as "default" | "premium" | "vip";
 };
 
-const useChatStore = create<ChatStore | any>((set) => {
+const useChatStore = create<ChatStore>((set) => {
   const initialTheme =
     (localStorage.getItem("theme") as "light" | "dark") || "light";
   document.body.className = initialTheme;
   const userId = getUserId();
+  const initialSettings = getInitialSettings();
+
+  // Aplicar cores iniciais
+  document.documentElement.style.setProperty(
+    "--primary-color",
+    initialSettings.primaryColor
+  );
+  document.documentElement.style.setProperty(
+    "--secondary-color",
+    initialSettings.secondaryColor
+  );
 
   return {
     messages: JSON.parse(
@@ -33,17 +55,40 @@ const useChatStore = create<ChatStore | any>((set) => {
     ) as Message[],
     theme: initialTheme,
     userId,
+    settings: initialSettings,
 
     toggleTheme: () =>
-      set((state: any) => {
+      set((state) => {
         const newTheme = state.theme === "light" ? "dark" : "light";
         document.body.className = newTheme;
         localStorage.setItem("theme", newTheme);
         return { theme: newTheme };
       }),
 
+    updateSettings: (newSettings: Partial<ChatSettings>) =>
+      set((state) => {
+        const updatedSettings = { ...state.settings, ...newSettings };
+        localStorage.setItem("chatSettings", JSON.stringify(updatedSettings));
+
+        // Atualizar cores CSS
+        if (newSettings.primaryColor) {
+          document.documentElement.style.setProperty(
+            "--primary-color",
+            newSettings.primaryColor
+          );
+        }
+        if (newSettings.secondaryColor) {
+          document.documentElement.style.setProperty(
+            "--secondary-color",
+            newSettings.secondaryColor
+          );
+        }
+
+        return { settings: updatedSettings };
+      }),
+
     sendMessage: (text: string, type: "text" | "voice", audioBlob?: Blob) =>
-      set((state: any) => {
+      set((state) => {
         let audioUrl = "";
 
         if (type === "voice" && audioBlob) {
