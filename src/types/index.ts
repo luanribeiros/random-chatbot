@@ -1,9 +1,13 @@
 // Tipos relacionados às mensagens do chat
+export type MessageType = 'text' | 'voice';
+
 export interface Message {
     text: string;
     sender: 'user' | 'bot';
     timestamp: string;
     userId: string;
+    type: MessageType;
+    audioUrl?: string;
 }
 
 // Tipos relacionados ao tema

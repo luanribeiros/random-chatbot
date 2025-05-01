@@ -1,6 +1,10 @@
-import { MessagesContainerProps } from "../../types";
 import { useRef, useEffect } from "react";
+import { Message } from "../../types";
 import "./MessagesContainer.css";
+
+interface MessagesContainerProps {
+  messages: Message[];
+}
 
 const MessagesContainer = ({ messages }: MessagesContainerProps) => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -17,6 +21,13 @@ const MessagesContainer = ({ messages }: MessagesContainerProps) => {
       {messages.map((message, index) => (
         <div key={index} className={`message ${message.sender}`}>
           <div className="message-content">
+            {message.type === "voice" && message.audioUrl && (
+              <audio
+                controls
+                src={message.audioUrl}
+                className="voice-message"
+              />
+            )}
             <p>{message.text}</p>
             <span className="timestamp">{message.timestamp}</span>
           </div>
