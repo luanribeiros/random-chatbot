@@ -3,15 +3,22 @@ export interface Message {
     text: string;
     sender: 'user' | 'bot';
     timestamp: string;
+    userId: string;
 }
 
 // Tipos relacionados ao tema
 export type Theme = 'light' | 'dark';
 
 // Interface do store do chat
+export interface UserBotResponses {
+    userId: string;
+    responses: string[];
+}
+
 export interface ChatStore {
     messages: Message[];
     theme: Theme;
+    userId: string;
     toggleTheme: () => void;
     sendMessage: (text: string) => void;
 }
