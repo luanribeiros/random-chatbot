@@ -15,7 +15,11 @@ const botResponses = [
 ];
 
 const Chat = () => {
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState(() => {
+        // Carrega as mensagens do localStorage ao inicializar
+        const savedMessages = localStorage.getItem('chatMessages');
+        return savedMessages ? JSON.parse(savedMessages) : [];
+    });
     const [inputMessage, setInputMessage] = useState('');
     const [theme, setTheme] = useState('light');
     const chatContainerRef = useRef(null);
@@ -24,6 +28,11 @@ const Chat = () => {
         setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
         document.body.className = theme === 'light' ? 'dark' : '';
     };
+
+    // Salva as mensagens no localStorage sempre que houver mudanças
+    useEffect(() => {
+        localStorage.setItem('chatMessages', JSON.stringify(messages));
+    }, [messages]);
 
     useEffect(() => {
         if (chatContainerRef.current) {
