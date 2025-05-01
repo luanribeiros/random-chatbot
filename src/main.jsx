@@ -1,10 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import './assets/styles/styles.global.css'
+import Chat from './components/Chat/Chat'
 
 createRoot(document.querySelector('#root')).render(
   <StrictMode>
-    <App />
+    <div className="app-container">
+      <Chat />
+    </div>
   </StrictMode>,
 )
