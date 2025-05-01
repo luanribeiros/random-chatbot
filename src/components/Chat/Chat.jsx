@@ -1,38 +1,11 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import useChatStore from '../../store/chatStore';
 import './Chat.css';
 
-const botResponses = [
-    "Olá! Como posso ajudar você hoje?",
-    "Interessante, me conte mais sobre isso!",
-    "Entendi perfeitamente sua questão.",
-    "Que legal! Continue...",
-    "Isso é muito interessante!",
-    "Posso ajudar com mais alguma coisa?",
-    "Compreendo sua situação.",
-    "Estou aqui para ajudar!",
-    "Que ótima pergunta!",
-    "Vou fazer o possível para ajudar você."
-];
-
 const Chat = () => {
-    const [messages, setMessages] = useState(() => {
-        // Carrega as mensagens do localStorage ao inicializar
-        const savedMessages = localStorage.getItem('chatMessages');
-        return savedMessages ? JSON.parse(savedMessages) : [];
-    });
+    const { messages, theme, toggleTheme, sendMessage } = useChatStore();
     const [inputMessage, setInputMessage] = useState('');
-    const [theme, setTheme] = useState('light');
     const chatContainerRef = useRef(null);
-
-    const toggleTheme = () => {
-        setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-        document.body.className = theme === 'light' ? 'dark' : '';
-    };
-
-    // Salva as mensagens no localStorage sempre que houver mudanças
-    useEffect(() => {
-        localStorage.setItem('chatMessages', JSON.stringify(messages));
-    }, [messages]);
 
     useEffect(() => {
         if (chatContainerRef.current) {
@@ -44,25 +17,7 @@ const Chat = () => {
         e.preventDefault();
         if (!inputMessage.trim()) return;
 
-        const userMessage = {
-            text: inputMessage,
-            sender: 'user',
-            timestamp: new Date().toLocaleTimeString()
-        };
-
-        setMessages(prev => [...prev, userMessage]);
-
-        // Simula resposta do bot após 1 segundo
-        setTimeout(() => {
-            const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
-            const botMessage = {
-                text: randomResponse,
-                sender: 'bot',
-                timestamp: new Date().toLocaleTimeString()
-            };
-            setMessages(prev => [...prev, botMessage]);
-        }, 1000);
-
+        sendMessage(inputMessage);
         setInputMessage('');
     };
 
@@ -71,7 +26,7 @@ const Chat = () => {
             <div className="chat-header">
                 <h2>FinTalk ChatBot Challenge</h2>
                 <button onClick={toggleTheme} className="theme-toggle">
-                    {theme === 'light' ? '🌙' : '☀️'}
+                    {theme === 'light' ? '☀️' : '🌕'}
                 </button>
             </div>
             

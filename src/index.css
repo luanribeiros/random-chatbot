@@ -33,6 +33,11 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+body.dark {
+  background-color: #121212;
 }
 
 h1 {
