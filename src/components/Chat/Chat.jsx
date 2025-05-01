@@ -1,18 +1,12 @@
-import { useRef, useEffect, useState } from 'react';
+import { useState } from 'react';
 import useChatStore from '../../store/chatStore';
 import ChatHeader from '../ChatHeader/ChatHeader';
+import MessagesContainer from '../MessagesContainer/MessagesContainer';
 import './Chat.css';
 
 const Chat = () => {
     const { messages, theme, sendMessage } = useChatStore();
     const [inputMessage, setInputMessage] = useState('');
-    const chatContainerRef = useRef(null);
-
-    useEffect(() => {
-        if (chatContainerRef.current) {
-            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-        }
-    }, [messages]);
 
     const handleSendMessage = (e) => {
         e.preventDefault();
@@ -25,18 +19,7 @@ const Chat = () => {
     return (
         <div className={`chat-container ${theme}`}>
             <ChatHeader />
-            
-            <div className="messages-container" ref={chatContainerRef}>
-                {messages.map((message, index) => (
-                    <div key={index} className={`message ${message.sender}`}>
-                        <div className="message-content">
-                            <p>{message.text}</p>
-                            <span className="timestamp">{message.timestamp}</span>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
+            <MessagesContainer messages={messages} />
             <form onSubmit={handleSendMessage} className="input-container">
                 <input
                     type="text"
