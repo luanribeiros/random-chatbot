@@ -60,7 +60,7 @@ const Chat = () => {
     return (
         <div className={`chat-container ${theme}`}>
             <div className="chat-header">
-                <h2>Chat Bot</h2>
+                <h2>FinTalk ChatBot Challenge</h2>
                 <button onClick={toggleTheme} className="theme-toggle">
                     {theme === 'light' ? '🌙' : '☀️'}
                 </button>
