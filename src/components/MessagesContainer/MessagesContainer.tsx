@@ -1,8 +1,9 @@
+import { Message, MessagesContainerProps } from '../../types';
 import { useRef, useEffect } from 'react';
 import './MessagesContainer.css';
 
-const MessagesContainer = ({ messages }) => {
-    const chatContainerRef = useRef(null);
+const MessagesContainer = ({ messages }: MessagesContainerProps) => {
+    const chatContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (chatContainerRef.current) {

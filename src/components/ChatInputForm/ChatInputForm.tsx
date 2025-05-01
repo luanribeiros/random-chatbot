@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import './ChatInputForm.css';
 
-const ChatInputForm = ({ onSendMessage }) => {
-    const [inputMessage, setInputMessage] = useState('');
+import { ChatInputFormProps } from '../../types';
 
-    const handleSubmit = (e) => {
+const ChatInputForm = ({ onSendMessage }: ChatInputFormProps) => {
+    const [inputMessage, setInputMessage] = useState<string>('');
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!inputMessage.trim()) return;
 
