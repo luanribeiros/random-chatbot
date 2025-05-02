@@ -1,5 +1,5 @@
-import { useRef, useEffect } from "react";
 import { Message } from "../../types";
+import { useMessagesContainer } from "./hooks/useMessagesContainer";
 import "./MessagesContainer.css";
 
 interface MessagesContainerProps {
@@ -7,14 +7,7 @@ interface MessagesContainerProps {
 }
 
 const MessagesContainer = ({ messages }: MessagesContainerProps) => {
-  const chatContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop =
-        chatContainerRef.current.scrollHeight;
-    }
-  }, [messages]);
+  const { chatContainerRef } = useMessagesContainer({ messages });
 
   return (
     <div className="messages-container" ref={chatContainerRef}>
@@ -26,6 +19,7 @@ const MessagesContainer = ({ messages }: MessagesContainerProps) => {
                 controls
                 src={message.audioUrl}
                 className="voice-message"
+                data-testid="voice-message-audio"
               />
             )}
             <p>{message.text}</p>
