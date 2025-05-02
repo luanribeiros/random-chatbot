@@ -1,48 +1,49 @@
-// Tipos relacionados às mensagens do chat
-export type MessageType = 'text' | 'voice';
+export type MessageType = "text" | "voice";
 
 export interface Message {
-    text: string;
-    sender: 'user' | 'bot';
-    timestamp: string;
-    userId: string;
-    type: MessageType;
-    audioUrl?: string;
+  text: string;
+  sender: "user" | "bot";
+  timestamp: string;
+  userId: string;
+  type: MessageType;
+  audioUrl?: string;
 }
 
-// Tipos relacionados ao tema
-export type Theme = 'light' | 'dark';
+export type Theme = "light" | "dark";
 
 export interface Message {
-    text: string;
-    sender: 'user' | 'bot';
-    timestamp: string;
-    userId: string;
-    type: 'text' | 'voice';
-    audioUrl?: string;
+  text: string;
+  sender: "user" | "bot";
+  timestamp: string;
+  userId: string;
+  type: "text" | "voice";
+  audioUrl?: string;
 }
 
 export interface ChatSettings {
-    botName: string;
-    primaryColor: string;
-    secondaryColor: string;
+  botName: string;
+  primaryColor: string;
+  secondaryColor: string;
 }
 
 export interface ChatStore {
-    messages: Message[];
-    theme: Theme;
-    userId: string;
-    settings: ChatSettings;
-    toggleTheme: () => void;
-    sendMessage: (message: string, type: 'text' | 'voice', audioBlob?: Blob) => void;
-    updateSettings: (settings: Partial<ChatSettings>) => void;
+  messages: Message[];
+  theme: Theme;
+  userId: string;
+  settings: ChatSettings;
+  toggleTheme: () => void;
+  sendMessage: (
+    message: string,
+    type: "text" | "voice",
+    audioBlob?: Blob
+  ) => void;
+  updateSettings: (settings: Partial<ChatSettings>) => void;
 }
 
-// Props dos componentes
 export interface MessagesContainerProps {
-    messages: Message[];
+  messages: Message[];
 }
 
 export interface ChatInputFormProps {
-    onSendMessage: (message: string) => void;
+  onSendMessage: (message: string) => void;
 }

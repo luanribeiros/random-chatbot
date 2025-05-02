@@ -52,7 +52,6 @@
     display: block;
 }
 
-/* Estilização da barra de rolagem */
 .messages-container::-webkit-scrollbar {
     width: 6px;
 }

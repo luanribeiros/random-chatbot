@@ -24,7 +24,6 @@ const getUserId = (): string => {
 };
 
 const getUserType = (userId: string): "default" | "premium" | "vip" => {
-  // Simula uma lógica de negócio para determinar o tipo do usuário
   const userTypes = ["default", "premium", "vip"];
   const hash = userId
     .split("")
@@ -39,7 +38,6 @@ const useChatStore = create<ChatStore>((set) => {
   const userId = getUserId();
   const initialSettings = getInitialSettings();
 
-  // Aplicar cores iniciais
   document.documentElement.style.setProperty(
     "--primary-color",
     initialSettings.primaryColor
@@ -70,7 +68,6 @@ const useChatStore = create<ChatStore>((set) => {
         const updatedSettings = { ...state.settings, ...newSettings };
         localStorage.setItem("chatSettings", JSON.stringify(updatedSettings));
 
-        // Atualizar cores CSS
         if (newSettings.primaryColor) {
           document.documentElement.style.setProperty(
             "--primary-color",
@@ -107,7 +104,6 @@ const useChatStore = create<ChatStore>((set) => {
         const newMessages = [...state.messages, userMessage];
         localStorage.setItem("chatMessages", JSON.stringify(newMessages));
 
-        // Bot response
         setTimeout(() => {
           const userType = getUserType(state.userId);
           const responses = botResponseSets[userType];

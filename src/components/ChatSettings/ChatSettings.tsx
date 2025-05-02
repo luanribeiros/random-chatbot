@@ -1,31 +1,18 @@
-import { useState } from "react";
-import useChatStore from "../../store/chatStore";
+import { useSettings } from "./hooks/useSettings";
 import "./ChatSettings.css";
 
 const ChatSettings = () => {
-  const { settings, updateSettings } = useChatStore();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    updateSettings({
-      botName: formData.get("botName") as string,
-      primaryColor: formData.get("primaryColor") as string,
-      secondaryColor: formData.get("secondaryColor") as string,
-    });
-    setIsOpen(false);
-  };
+  const { isOpen, settings, toggleSettings, handleSubmit } = useSettings();
 
   return (
     <div className="chat-settings">
-      <button onClick={() => setIsOpen(!isOpen)} className="settings-toggle">
+      <button onClick={toggleSettings} className="settings-toggle">
         ⚙️
       </button>
 
       {isOpen && (
         <div className="settings-modal">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} data-testid="settings-form">
             <div className="form-group">
               <label htmlFor="botName">Nome do Bot</label>
               <input
@@ -58,7 +45,7 @@ const ChatSettings = () => {
             </div>
 
             <div className="form-actions">
-              <button type="button" onClick={() => setIsOpen(false)}>
+              <button type="button" onClick={toggleSettings}>
                 Cancelar
               </button>
               <button type="submit">Salvar</button>

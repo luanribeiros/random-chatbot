@@ -44,7 +44,6 @@ describe("ChatInputForm", () => {
   });
 
   it("should send voice message when audio is recorded", async () => {
-    // Mock do MediaStream
     const mockStream = {
       getTracks: () => [
         {
@@ -53,7 +52,6 @@ describe("ChatInputForm", () => {
       ],
     };
 
-    // Mock do MediaRecorder
     const mockMediaRecorder = {
       start: jest.fn(),
       stop: jest.fn(),
@@ -63,13 +61,11 @@ describe("ChatInputForm", () => {
       stream: mockStream,
     };
 
-    // Define o método estático isTypeSupported no MediaRecorder
     const MediaRecorderMock = jest.fn(() => mockMediaRecorder) as jest.Mock & {
       isTypeSupported: jest.Mock;
     };
     MediaRecorderMock.isTypeSupported = jest.fn().mockReturnValue(true);
 
-    // Mock do navigator.mediaDevices
     Object.defineProperty(global.navigator, "mediaDevices", {
       writable: true,
       value: {
@@ -77,7 +73,6 @@ describe("ChatInputForm", () => {
       },
     });
 
-    // Atribui o mock ao global.MediaRecorder
     (global as any).MediaRecorder = MediaRecorderMock;
 
     render(<ChatInputForm onSendMessage={mockOnSendMessage} />);
@@ -85,13 +80,11 @@ describe("ChatInputForm", () => {
     const voiceButton = screen.getByRole("button", { name: "🎤" });
     await fireEvent.click(voiceButton);
 
-    // Simula o evento dataavailable
     const audioBlob = new Blob(["audio data"], { type: "audio/wav" });
     if (typeof mockMediaRecorder.ondataavailable === "function") {
       mockMediaRecorder.ondataavailable({ data: audioBlob } as BlobEvent);
     }
 
-    // Simula o evento stop
     if (typeof mockMediaRecorder.onstop === "function") {
       mockMediaRecorder.onstop({} as Event);
     }
