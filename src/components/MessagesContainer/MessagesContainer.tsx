@@ -19,7 +19,7 @@ const MessagesContainer = ({ messages }: MessagesContainerProps) => {
   return (
     <div className="messages-container" ref={chatContainerRef}>
       {messages.map((message, index) => (
-        <div key={index} className={`message ${message.sender}`}>
+        <div key={index} className={`message ${message.sender}`} role="article">
           <div className="message-content">
             {message.type === "voice" && message.audioUrl && (
               <audio

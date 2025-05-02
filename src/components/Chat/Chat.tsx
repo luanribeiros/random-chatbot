@@ -9,7 +9,7 @@ const Chat = () => {
   const { messages, theme, sendMessage } = useChatStore();
 
   return (
-    <div className={`chat-container ${theme}`}>
+    <div className={`chat-container ${theme}`} data-testid="chat-container">
       <ChatHeader />
       <MessagesContainer messages={messages as Message[]} />
       <ChatInputForm onSendMessage={sendMessage} />
