@@ -1,7 +1,7 @@
 # Fintalk Challenge
 
 ## 📝 Descrição
-Este é um projeto React + TypeScript que implementa uma interface de chat com funcionalidades de mensagens de texto e voz.
+Este é um projeto que implementa uma interface de chat com funcionalidades de mensagens de texto e voz.
 
 ## 🚀 Tecnologias Utilizadas
 - React 19
