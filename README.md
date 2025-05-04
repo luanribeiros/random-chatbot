@@ -1,7 +1,7 @@
 # Fintalk Challenge
 
 ## 📝 Descrição
-Este é um projeto que implementa uma interface de chat com funcionalidades de mensagens de texto e voz. [Você pode visualizar em produção aqui!](random-chatbot.vercel.app/)
+Este é um projeto que implementa uma interface de chat com funcionalidades de mensagens de texto e voz. [Você pode visualizar em produção aqui!](https://random-chatbot.vercel.app/)
 
 ## 🚀 Tecnologias Utilizadas
 - React 19
