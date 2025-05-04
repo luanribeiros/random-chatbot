@@ -1,0 +1,23 @@
+.chat-container {
+  // ... existing code ...
+  min-width: 280px; /* Garante largura mínima para dispositivos pequenos */
+  max-width: 100%; /* Evita overflow horizontal */
+}
+
+.chat-input-container {
+  // ... existing code ...
+  padding: 10px;
+  gap: 8px; /* Reduz o espaçamento entre os botões */
+}
+
+.chat-input {
+  // ... existing code ...
+  min-width: 0; /* Permite que o input encolha conforme necessário */
+  flex: 1;
+}
+
+.button-container {
+  display: flex;
+  gap: 8px;
+  min-width: fit-content; /* Garante que os botões não encolham demais */
+}

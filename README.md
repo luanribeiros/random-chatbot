@@ -65,24 +65,14 @@ yarn test
 
 ## 🎨 Funcionalidades
 
-- Interface de chat interativa
+- Interface de chat interativa e responsiva
 - Suporte a mensagens de texto
 - Gravação e envio de mensagens de voz
 - Tema claro/escuro
 - Configurações personalizáveis (nome do bot, cores)
-
-## 🔧 Configuração do Ambiente de Desenvolvimento
-
-O projeto utiliza as seguintes configurações:
-
-- TypeScript com configurações estritas
-- ESLint para linting
-- Vite como bundler
-- Jest configurado para testes
+- Mensagens e a personalização persistidas no localStorage
 
 ## 📦 Estrutura do Projeto
-
-O projeto segue uma estrutura de componentes React com TypeScript, utilizando:
 
 - Componentes funcionais
 - Hooks personalizados
