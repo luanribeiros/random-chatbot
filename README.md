@@ -1,12 +1,90 @@
-# React + Vite
+# Fintalk Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📝 Descrição
+Este é um projeto React + TypeScript que implementa uma interface de chat com funcionalidades de mensagens de texto e voz.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologias Utilizadas
+- React 19
+- TypeScript
+- Vite
+- Zustand (gerenciamento de estado)
+- Jest + Testing Library (testes)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 Pré-requisitos
+- Node.js (versão compatível com React 19)
+- npm ou yarn
 
-## Expanding the ESLint configuration
+## 🛠️ Instalação
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone o repositório:
+```bash
+git clone https://seu-repositorio/fintalk-challenge.git
+cd fintalk-challenge
+```
+
+2. Instale as dependências:
+```bash
+npm install
+```
+ou
+```bash
+yarn
+```
+
+## 💻 Executando o Projeto
+
+Para iniciar o servidor de desenvolvimento:
+```bash
+npm run dev
+```
+ou
+```bash
+yarn dev
+```
+
+O aplicativo estará disponível em `http://localhost:5173`
+
+## ⚙️ Scripts Disponíveis
+
+- `npm run dev` - Inicia o servidor de desenvolvimento
+- `npm run build` - Cria a versão de produção
+- `npm run preview` - Visualiza a versão de produção localmente
+- `npm run test` - Executa os testes
+- `npm run lint` - Executa a verificação de linting
+
+## 🧪 Testes
+
+O projeto utiliza Jest e Testing Library para testes. Para executar os testes:
+```bash
+npm test
+```
+ou
+```bash
+yarn test
+```
+
+## 🎨 Funcionalidades
+
+- Interface de chat interativa
+- Suporte a mensagens de texto
+- Gravação e envio de mensagens de voz
+- Tema claro/escuro
+- Configurações personalizáveis (nome do bot, cores)
+
+## 🔧 Configuração do Ambiente de Desenvolvimento
+
+O projeto utiliza as seguintes configurações:
+
+- TypeScript com configurações estritas
+- ESLint para linting
+- Vite como bundler
+- Jest configurado para testes
+
+## 📦 Estrutura do Projeto
+
+O projeto segue uma estrutura de componentes React com TypeScript, utilizando:
+
+- Componentes funcionais
+- Hooks personalizados
+- Gerenciamento de estado com Zustand
+- Testes unitários para cada componente
